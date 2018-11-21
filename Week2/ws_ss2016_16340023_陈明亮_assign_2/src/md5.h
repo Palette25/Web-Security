@@ -13,6 +13,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
@@ -44,11 +45,15 @@ public:
 	unsigned char* getPlainText(){
 		return plainText;
 	}
+	int getLength(){
+		return length;
+	}
 
 
 private:
 	MD5_Meta meta;
-	unsigned char plainText[50 * 1024];
+	int length;
+	unsigned char plainText[5000 * 1024];
 	unsigned char cipherText[16];
 
 };
