@@ -7,22 +7,20 @@ unsigned char Padding[] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 MD5_Processor::MD5_Processor(string filePath){
-	ifstream file(filePath);
+	ifstream file(filePath.data(), ios::binary);
 	stringstream ss;
 	string str;
 	if(file.is_open()){
-		int id = 0;
-		char ch;
-		file >> noskipws;
-		while(!file.eof()){
-			file >> ch;
-			plainText[id++] = ch;
+		ss << file.rdbuf();
+		str = ss.str();
+		vector<unsigned char> store;
+		for(int i=0; i<str.size(); i++)
+			store.push_back(str[i]);
+		int i = 0;
+		for(i=0; i<store.size(); i++){
+			this->plainText[i] = store[i];
 		}
-		plainText[id - 1] = '\0';
-		for(int i=0; i<id; i++){
-			cout << plainText[i];
-		}
-		cout << endl;
+		this->length = store.size();
 		file.close();
 	}else {
 		cout << "[Error] Error when opening file: " << filePath << endl;
@@ -59,7 +57,7 @@ void MD5_Processor::MD5_Update(unsigned char* input, int len){
         index=0;
     }
     else i=0;
-    memcpy(&meta.buffer[index], &input[i], len-i);//最后剩下的一部分
+    memcpy(&meta.buffer[index], &input[i], len-i);
 }
 
 void MD5_Processor::MD5_Transform(unsigned int* state, unsigned char* block){
@@ -169,7 +167,7 @@ void MD5_Processor::MD5_Decode(unsigned int* x, unsigned char* buff, int len){
 }
 
 // Final process function
-void MD5_Processor::MD5_Final(){
+void MD5_Processor::MD5_Final(bool flag){
 	int index, paddingLen;
     unsigned char tempBits[8];
     index = (meta.number[0] >> 3) & 0x3F;
@@ -182,7 +180,10 @@ void MD5_Processor::MD5_Final(){
     MD5_Update(tempBits, 8);
     MD5_Encode(this->cipherText, meta.state, 16);
     // Print result
-    for(int i=0; i<16; i++){
-    	printf("%02x", this->cipherText[i]);
+    if(flag){
+        cout << "The MD5 result: ";
+        for(int i=0; i<16; i++){
+            printf("%02x", this->cipherText[i]);
+        }
     }
 }

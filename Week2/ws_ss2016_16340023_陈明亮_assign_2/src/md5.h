@@ -9,10 +9,10 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
@@ -40,15 +40,19 @@ public:
 	void MD5_Transform(unsigned int* state, unsigned char* block);
 	void MD5_Encode(unsigned char* out, unsigned int* in, int len);
 	void MD5_Decode(unsigned int* out, unsigned char* in, int len);
-	void MD5_Final();
+	void MD5_Final(bool flag);
 	unsigned char* getPlainText(){
 		return plainText;
+	}
+	int getLength(){
+		return length;
 	}
 
 
 private:
 	MD5_Meta meta;
-	unsigned char plainText[50 * 1024];
+	int length;
+	unsigned char plainText[500 * 1024];
 	unsigned char cipherText[16];
 
 };
