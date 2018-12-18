@@ -1,0 +1,31 @@
+X.509 Certificate: ../testData/google.cerParse Result：
+
+Version:   v3
+Serial Number:   3b1c145053c2b580
+Signature Alogorithm Name:   
+The Signature Parameters:   NULL
+Issuers:
+Country Of Issuer: 	US
+Sate or province name Of Issuer: 	
+
+Organization name Of Issuer: 	Google Trust Services
+
+Common Name Of Issuer: 	Google Internet Authority G3
+Validity:
+
+Subjects:
+
+2.5.29.17
+
+
+
+
+Name Of Subject PublicKey's Algorithm:   
+Parameters Of Subject PublicKey's Algorithm:   305a302d06082b060105050730028621687474703a2f2f706b692e676f6f672f677372322f47545347494147332e637274302906082b06010505073001861d687474703a2f2f6f6373702e706b692e676f6f672f4754534749414733
+692e676f6f672f677372322f47545347494147332e637274302906082b06010505073001861d687474703a2f2f6f6373702e706b692e676f6f672f47545347494147332906082b06010505073001861d687474703a2f2f6f6373702e706b692e676f6f672f4754534749414733
+IssuerUniqueID:   None
+SubjectUniqueID:   None
+Extension:   None
+
+Parameters of Signature Algorithm:   2.5.29.19
+Value of Signature:   TRUE
